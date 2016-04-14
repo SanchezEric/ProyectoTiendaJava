@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2016 a las 12:23:32
+-- Tiempo de generación: 14-04-2016 a las 13:12:46
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.6.12
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -29,7 +30,7 @@ USE `bd_tiendajava`;
 --
 -- Estructura de tabla para la tabla `tbl_administrador`
 --
--- Creación: 11-04-2016 a las 09:58:26
+-- Creación: 13-04-2016 a las 07:11:50
 --
 
 DROP TABLE IF EXISTS `tbl_administrador`;
@@ -42,44 +43,64 @@ CREATE TABLE IF NOT EXISTS `tbl_administrador` (
   `nom_admin` varchar(15) COLLATE utf8_bin NOT NULL,
   `apellido_admin` varchar(25) COLLATE utf8_bin NOT NULL,
   `activo_admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- RELACIONES PARA LA TABLA `tbl_administrador`:
 --
+
+--
+-- Volcado de datos para la tabla `tbl_administrador`
+--
+
+INSERT INTO `tbl_administrador` (`id_admin`, `user_admin`, `mail_admin`, `pwd_admin`, `desc_admin`, `nom_admin`, `apellido_admin`, `activo_admin`) VALUES
+(1, 'Admin', 'asaasa', '123', 'fsfsdfds', 'fsd', 'fsds', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tbl_cliente`
 --
--- Creación: 11-04-2016 a las 10:04:25
+-- Creación: 14-04-2016 a las 10:05:49
 --
 
 DROP TABLE IF EXISTS `tbl_cliente`;
 CREATE TABLE IF NOT EXISTS `tbl_cliente` (
   `id_cliente` int(11) NOT NULL,
+  `usaurio_cliente` varchar(15) COLLATE utf8_bin NOT NULL,
   `nom_cliente` varchar(15) COLLATE utf8_bin NOT NULL,
   `apellido_cliente` varchar(25) COLLATE utf8_bin NOT NULL,
-  `desc_cliente` varchar(50) COLLATE utf8_bin NOT NULL,
   `mail_cliente` varchar(40) COLLATE utf8_bin NOT NULL,
   `pwd_cliente` varchar(10) COLLATE utf8_bin NOT NULL,
   `nif_cliente` varchar(9) COLLATE utf8_bin NOT NULL,
   `cpostal_cliente` varchar(5) COLLATE utf8_bin NOT NULL,
   `direccion_cliente` varchar(50) COLLATE utf8_bin NOT NULL,
-  `activo_cliente` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `activo_cliente` varchar(5) COLLATE utf8_bin NOT NULL DEFAULT 'true'
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- RELACIONES PARA LA TABLA `tbl_cliente`:
 --
+
+--
+-- Volcado de datos para la tabla `tbl_cliente`
+--
+
+INSERT INTO `tbl_cliente` (`id_cliente`, `usaurio_cliente`, `nom_cliente`, `apellido_cliente`, `mail_cliente`, `pwd_cliente`, `nif_cliente`, `cpostal_cliente`, `direccion_cliente`, `activo_cliente`) VALUES
+(1, 'Eric', 'hfghfdgh', 'dfgdsfg', 'v', '123', 'dfgdfg', '08906', 'khjkh', 'false'),
+(2, 'usuario', 'nombre', 'apellido', 'mail2', 'passw', 'nif', '08906', 'direc', 'false'),
+(3, 'usuario', 'nombre', 'apellido', 'mail', 'passw', 'nif', '08906', 'direc', 'true'),
+(4, 'usuario', 'nombre', 'apellido', 'mail1', 'passw', 'nif', '08906', 'direc', 'true'),
+(5, 'Eric', 'dasdad', 'yutr', 'uluiy', 'luiy', 'lyyul', 'adasd', 'adasd', 'false'),
+(6, 'Car', 'qwe', 'eqwe', 'qwe', 'qwe', 'qwe', 'qwe', 'qwe', 'true'),
+(7, 'Ca2', 'qwe2', 'eqwe2', 'qwe2', '2323', 'qwe2', 'qwe2', 'qwe2', 'true');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tbl_factura`
 --
--- Creación: 11-04-2016 a las 10:15:20
+-- Creación: 13-04-2016 a las 07:11:50
 --
 
 DROP TABLE IF EXISTS `tbl_factura`;
@@ -101,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `tbl_factura` (
 --
 -- Estructura de tabla para la tabla `tbl_lineafactura`
 --
--- Creación: 11-04-2016 a las 10:18:28
+-- Creación: 13-04-2016 a las 07:11:50
 --
 
 DROP TABLE IF EXISTS `tbl_lineafactura`;
@@ -126,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `tbl_lineafactura` (
 --
 -- Estructura de tabla para la tabla `tbl_producto`
 --
--- Creación: 11-04-2016 a las 09:56:33
+-- Creación: 13-04-2016 a las 07:11:50
 --
 
 DROP TABLE IF EXISTS `tbl_producto`;
@@ -192,12 +213,12 @@ ALTER TABLE `tbl_producto`
 -- AUTO_INCREMENT de la tabla `tbl_administrador`
 --
 ALTER TABLE `tbl_administrador`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tbl_cliente`
 --
 ALTER TABLE `tbl_cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tbl_factura`
 --
@@ -229,6 +250,7 @@ ALTER TABLE `tbl_factura`
 ALTER TABLE `tbl_lineafactura`
   ADD CONSTRAINT `tbl_lineafactura_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `tbl_factura` (`id_factura`),
   ADD CONSTRAINT `tbl_lineafactura_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `tbl_producto` (`id_producto`);
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
