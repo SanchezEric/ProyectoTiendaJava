@@ -1,0 +1,24 @@
+///////El proyecto no borra los usuarios, los desactiva para poder guardar los datos de estos
+///////////////La contraseña es 123 para todos los usuarios
+
+Usuarios Admin:
+	Activados:
+		Admin
+		admin2@gmail.com
+		
+	Desactivados:
+		admin3@gmail.com
+		admin4@gmail.com
+
+
+Usuarios Clientes:
+	Activados:
+		mail
+		mail1
+		mail3
+		mail4
+		
+	Desactivados:
+		Cliente
+		mail2
+		mail5
